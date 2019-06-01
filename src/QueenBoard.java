@@ -161,6 +161,11 @@ public class QueenBoard{
     }
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         runTest(6);
+        long endTime = System.nanoTime();
+
+        double time = (endTime - startTime) * Math.pow(10, -9);
+        System.out.println("Took " + time + " seconds");
     }
 }

@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    int size = 12;
+    int size = 13;
 
     public static void main(String[] args) {
         new Main().run();
@@ -32,9 +32,15 @@ public class Main {
 
         for (int i = 0; i < 1; i++) {
 
+            boolean[] cols = new boolean[size];
+            for (int j = 0; j < size; j++) {
+                cols[j] = true;
+            }
+
             int[][] board = new int[size][size];
             //System.out.println(nQueens(board, size));
-            System.out.println(nQueens(board, size - 1));
+
+            System.out.println(nQueens(board, size - 1, cols));
         }
 
         long endTime = System.nanoTime();
@@ -43,15 +49,19 @@ public class Main {
         System.out.println("Took " + time + " seconds");
     }
 
-    public int nQueens(int[][] board, int row) {
+    public int nQueens(int[][] board, int row, boolean[] cols) {
         if (row < 0) {
             //System.out.println("");
             //printBoard(board);
             return 1;
         }
 
+        //System.out.println(Arrays.toString(cols));
+
         int total = 0;
-        for (int col = 0; col < size; col++) {
+        //for (int col = 0; col < size; col++) {
+        for (int col = 0; col < cols.length; col++) {
+            if (!cols[col]) continue;
             int[][] boardCopy = copyBoard(board);
 //                System.out.println();
 //                System.out.println("Remaining: " + remaining);
@@ -81,7 +91,11 @@ public class Main {
 
                 boardCopy[row][col] = 2;
 
-                total += nQueens(boardCopy, row-1);
+                cols[col] = false;
+
+                total += nQueens(boardCopy, row-1, cols);
+
+                cols[col] = true;
             }
         }
         return total;
