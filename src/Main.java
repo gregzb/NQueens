@@ -1,29 +1,9 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Main {
 
     int size = 13;
 
     public static void main(String[] args) {
         new Main().run();
-    }
-
-    public int[][] copyBoard(int[][] board) {
-        int [][] temp = board.clone();
-        for(int i = 0; i < board.length; i++)
-            temp[i] = board[i].clone();
-        return temp;
-    }
-
-    public void printBoard(int[][] board) {
-        for (int[] row : board) {
-            for (int val : row) {
-                System.out.print(val);
-            }
-            System.out.println();
-            //System.out.println(Arrays.toString(row));
-        }
     }
 
     public void run() {
@@ -38,7 +18,6 @@ public class Main {
             }
 
             int[][] board = new int[size][size];
-            //System.out.println(nQueens(board, size));
 
             System.out.println(nQueens(board, size - 1, cols));
         }
@@ -51,53 +30,44 @@ public class Main {
 
     public int nQueens(int[][] board, int row, boolean[] cols) {
         if (row < 0) {
-            //System.out.println("");
-            //printBoard(board);
             return 1;
         }
 
-        //System.out.println(Arrays.toString(cols));
-
         int total = 0;
-        //for (int col = 0; col < size; col++) {
         for (int col = 0; col < cols.length; col++) {
             if (!cols[col]) continue;
-            int[][] boardCopy = copyBoard(board);
-//                System.out.println();
-//                System.out.println("Remaining: " + remaining);
-//                System.out.println("row: " + row + ", col: " + col);
-//                printBoard(boardCopy);
-            if (boardCopy[row][col] == 0) {
-
-                for (int iRow = 0; iRow < size; iRow++) {
-                    boardCopy[iRow][col] = 1;
-                } //goes down row
-                for (int iCol = 0; iCol < size; iCol++) {
-                    boardCopy[row][iCol] = 1;
-                } //goes down col
-
-                int minVal = Math.min(row, col);
-                int otherMinVal = Math.min(row, size-col-1);
-
-                //top left diagonal
-                for (int iRow = row-minVal, iCol = col-minVal; iRow < size && iCol < size; iRow++, iCol++) {
-                    boardCopy[iRow][iCol] = 1;
-                }
-
-                //top right diagonal
-                for (int iRow = row-otherMinVal, iCol = col+otherMinVal; iRow < size && iCol >= 0; iRow++, iCol--) {
-                    boardCopy[iRow][iCol] = 1;
-                }
-
-                boardCopy[row][col] = 2;
-
+            if (board[row][col] == 0) {
+                editQueen(board, row, col, 1);
                 cols[col] = false;
 
-                total += nQueens(boardCopy, row-1, cols);
+                total += nQueens(board, row-1, cols);
 
+                editQueen(board, row, col, -1);
                 cols[col] = true;
             }
         }
         return total;
+    }
+
+    public void editQueen(int[][] board, int row, int col, int add) {
+        for (int iRow = 0; iRow < size; iRow++) {
+            board[iRow][col] += add;
+        } //goes down row
+        for (int iCol = 0; iCol < size; iCol++) {
+            board[row][iCol] += add;
+        } //goes down col
+
+        int minVal = Math.min(row, col);
+        int otherMinVal = Math.min(row, size-col-1);
+
+        //top left diagonal
+        for (int iRow = row-minVal, iCol = col-minVal; iRow < size && iCol < size; iRow++, iCol++) {
+            board[iRow][iCol] += add;
+        }
+
+        //top right diagonal
+        for (int iRow = row-otherMinVal, iCol = col+otherMinVal; iRow < size && iCol >= 0; iRow++, iCol--) {
+            board[iRow][iCol] += add;
+        }
     }
 }
