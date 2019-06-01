@@ -11,15 +11,9 @@ public class Main {
         long startTime = System.nanoTime();
 
         for (int i = 0; i < 1; i++) {
-
-            boolean[] cols = new boolean[size];
-            for (int j = 0; j < size; j++) {
-                cols[j] = true;
-            }
-
             int[][] board = new int[size][size];
 
-            System.out.println(nQueens(board, size - 1, cols));
+            System.out.println(nQueens(board, size - 1));
         }
 
         long endTime = System.nanoTime();
@@ -28,22 +22,19 @@ public class Main {
         System.out.println("Took " + time + " seconds");
     }
 
-    public int nQueens(int[][] board, int row, boolean[] cols) {
+    public int nQueens(int[][] board, int row) {
         if (row < 0) {
             return 1;
         }
 
         int total = 0;
-        for (int col = 0; col < cols.length; col++) {
-            if (!cols[col]) continue;
+        for (int col = 0; col < board[0].length; col++) {
             if (board[row][col] == 0) {
                 editQueen(board, row, col, 1);
-                cols[col] = false;
 
-                total += nQueens(board, row-1, cols);
+                total += nQueens(board, row-1);
 
                 editQueen(board, row, col, -1);
-                cols[col] = true;
             }
         }
         return total;

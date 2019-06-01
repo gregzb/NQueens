@@ -144,7 +144,7 @@ public class QueenBoard{
     }
     public static void runTest(int i){
         QueenBoard b;
-        int[]tests =   {1,2,3,4,5,8,13};
+        int[]tests =   {1,2,3,4,5,8,14};
         int[]answers = {1,0,0,2,10,92,724};
         if(i >= 0 && i < tests.length ){
             int size = tests[i];
