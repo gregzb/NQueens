@@ -1,6 +1,6 @@
 public class Main {
 
-    int size = 13;
+    //int size = 12;
 
     public static void main(String[] args) {
         new Main().run();
@@ -8,18 +8,26 @@ public class Main {
 
     public void run() {
 
-        long startTime = System.nanoTime();
+        double prevTime = 0;
 
-        for (int i = 0; i < 1; i++) {
-            int[][] board = new int[size][size];
+        for (int i = 1; i <= 17; i++) {
+            System.out.println();
+            long startTime = System.nanoTime();
 
-            System.out.println(nQueens(board, size - 1));
+            int[][] board = new int[i][i];
+
+            System.out.println(nQueens(board, i - 1) + " solutions for n = " + i);
+
+            long endTime = System.nanoTime();
+
+            double time = (endTime - startTime) * Math.pow(10, -9);
+            System.out.println("Took " + time + " seconds");
+            if (prevTime != 0) {
+                System.out.println("That took " + (time/prevTime) + "x longer than the previous time");
+            }
+
+            prevTime = time;
         }
-
-        long endTime = System.nanoTime();
-
-        double time = (endTime - startTime) * Math.pow(10, -9);
-        System.out.println("Took " + time + " seconds");
     }
 
     public int nQueens(int[][] board, int row) {
@@ -28,7 +36,7 @@ public class Main {
         }
 
         int total = 0;
-        for (int col = 0; col < board[0].length; col++) {
+        for (int col = 0; col < board.length; col++) {
             if (board[row][col] == 0) {
                 editQueen(board, row, col, 1);
 
@@ -41,23 +49,23 @@ public class Main {
     }
 
     public void editQueen(int[][] board, int row, int col, int add) {
-        for (int iRow = 0; iRow < size; iRow++) {
+        for (int iRow = 0; iRow < board.length; iRow++) {
             board[iRow][col] += add;
         } //goes down row
-        for (int iCol = 0; iCol < size; iCol++) {
+        for (int iCol = 0; iCol < board.length; iCol++) {
             board[row][iCol] += add;
         } //goes down col
 
         int minVal = Math.min(row, col);
-        int otherMinVal = Math.min(row, size-col-1);
+        int otherMinVal = Math.min(row, board.length-col-1);
 
         //top left diagonal
-        for (int iRow = row-minVal, iCol = col-minVal; iRow < size && iCol < size; iRow++, iCol++) {
+        for (int iRow = row-minVal, iCol = col-minVal; iRow < board.length && iCol < board.length; iRow++, iCol++) {
             board[iRow][iCol] += add;
         }
 
         //top right diagonal
-        for (int iRow = row-otherMinVal, iCol = col+otherMinVal; iRow < size && iCol >= 0; iRow++, iCol--) {
+        for (int iRow = row-otherMinVal, iCol = col+otherMinVal; iRow < board.length && iCol >= 0; iRow++, iCol--) {
             board[iRow][iCol] += add;
         }
     }

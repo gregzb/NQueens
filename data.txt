@@ -1,0 +1,70 @@
+"C:\Program Files\Java\jdk-10.0.2\bin\java.exe" -Dvisualvm.id=1232772689374600 "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3.2\lib\idea_rt.jar=54114:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3.2\bin" -Dfile.encoding=UTF-8 -classpath C:\Users\chari\Documents\HolmesHW\NQueens\out\production\NQueens Main
+
+1 solutions for n = 1
+Took 0.0328472 seconds
+
+0 solutions for n = 2
+Took 2.92E-5 seconds
+That took 8.889646606103413E-4x longer than the previous time
+
+0 solutions for n = 3
+Took 2.9100000000000003E-5 seconds
+That took 0.9965753424657534x longer than the previous time
+
+2 solutions for n = 4
+Took 7.560000000000001E-5 seconds
+That took 2.597938144329897x longer than the previous time
+
+10 solutions for n = 5
+Took 1.128E-4 seconds
+That took 1.4920634920634919x longer than the previous time
+
+4 solutions for n = 6
+Took 2.243E-4 seconds
+That took 1.9884751773049645x longer than the previous time
+
+40 solutions for n = 7
+Took 3.6290000000000004E-4 seconds
+That took 1.617922425323228x longer than the previous time
+
+92 solutions for n = 8
+Took 6.450000000000001E-4 seconds
+That took 1.7773491319922843x longer than the previous time
+
+352 solutions for n = 9
+Took 0.0038988000000000004 seconds
+That took 6.044651162790697x longer than the previous time
+
+724 solutions for n = 10
+Took 0.0079796 seconds
+That took 2.0466810300605314x longer than the previous time
+
+2680 solutions for n = 11
+Took 0.024617200000000002 seconds
+That took 3.085016792821696x longer than the previous time
+
+14200 solutions for n = 12
+Took 0.1535994 seconds
+That took 6.23951546073477x longer than the previous time
+
+73712 solutions for n = 13
+Took 0.6925342 seconds
+That took 4.508703810040925x longer than the previous time
+
+365596 solutions for n = 14
+Took 3.7961737 seconds
+That took 5.481568563689707x longer than the previous time
+
+2279184 solutions for n = 15
+Took 25.097870500000003 seconds
+That took 6.6113598806082035x longer than the previous time
+
+14772512 solutions for n = 16
+Took 175.36240370000002 seconds
+That took 6.987142741851345x longer than the previous time
+
+95815104 solutions for n = 17
+Took 1340.5655852 seconds
+That took 7.644543852702675x longer than the previous time
+
+Process finished with exit code 0
